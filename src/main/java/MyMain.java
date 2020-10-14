@@ -2,61 +2,65 @@ public class MyMain {
 
     // Reverses an array
     public static int[] reverse(int[] arr) {
-        for(int i = 0; i < arr.length / 2; i++){
-            int a = arr[i];
-            arr[i] = arr[arr.length - i - 1];
-            arr[arr.length - i - 1] = a;
+        int[] a = new int[arr.length];
+        for (int i = 0; i < arr.length; i++){
+            a[i] = arr[arr.length - 1 - i];
         }
-        return arr;
+        return a;
     }
 
     // Finds the second largest number in an array
     public static int secondLargest(int[] arr) {
-        int len = arr.length;
-        Arrays.sort(arr);
-        int x = len - 2;
-        int y = arr[x];
-        return y;
+        int a;
+        int b;
+        if (arr[0] > arr[1]){
+            a = arr[0];
+            b = arr[1];
+        }
+        else{
+            a = arr[1];
+            b = arr[0];
+        }
+        for (int i = 2; i < arr.length; i++){
+            if ((arr[i] <= a) && arr[i] > b){
+                b = arr[i];
+            }
+            if (arr[i] > a){
+                b = a;
+                a = arr[i];
+            }
+        }
+
+        return b;
+
     }
 
     // Checks to see if an array contains a geometric series
     public static boolean isGeometric(int[] arr) {
-        int counter = 0;
-        int secondcounter = 0;
-
-        int x = arr[0];
-        int y = arr[1];
-        double a = (double)Math.log(y) / Math.log(x);
-        double b = (double)y/x;
-
-        for(int i = 1; i < arr.length; i++){
-            double z = Math.log(arr[i]) / Math.log(arr[i-1]);
-            if(z == a) {
-                counter = counter + 0;
-            }
-            else{
-                counter = counter + 1;
+        double[] a = new double[arr.length-1];
+        for(int i = 0; i <arr.length -1; i++){
+            a[i] = Double.valueOf(arr[i+1])/Double.valueOf(arr[i]);
+        }
+        int b = 0;
+        for (int i = 1; i < a.length; i++){
+            if (a[i] == a[k-1]){
+                b+=1;
             }
         }
-        for(int i = 1; i < arr.length; i++){
-            double z = (double)(arr[i]) / (arr[i-1]);
-            if (z == b){
-                secondcounter = secondcounter + 0;
-            }
-            else {
-                secondcounter = secondcounter + 1;
-            }
-        }
-        if (counter == 0 || secondcounter == 0){
+        if (b == a.length -1){
             return true;
         }
-        else {
+        else{
             return false;
         }
     }
 
 
     public static void main(String[] args) {
-        // YOUR CODE HERE
+        System.out.println(reverse(null));
+        System.out.println(secondLargest(null));
+        System.out.println(isGeometric(null));
+
+    
     }
 }
