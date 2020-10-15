@@ -2,11 +2,12 @@ public class MyMain {
 
     // Reverses an array
     public static int[] reverse(int[] arr) {
-        int[] a = new int[arr.length];
-        for (int i = 0; i < arr.length; i++){
-            a[i] = arr[arr.length - 1 - i];
+        for(int i = 0; i < arr.length / 2; i++){
+            int a = arr[i];
+            arr[i] = arr[arr.length - i - 1];
+            arr[arr.length - i - 1] = a;
         }
-        return a;
+        return arr;
     }
 
     // Finds the second largest number in an array
@@ -43,7 +44,7 @@ public class MyMain {
         }
         int b = 0;
         for (int i = 1; i < a.length; i++){
-            if (a[i] == a[k-1]){
+            if (a[i] == a[i-1]){
                 b+=1;
             }
         }
